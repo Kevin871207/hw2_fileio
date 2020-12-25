@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class Employee {
     double height;
@@ -22,7 +23,8 @@ public class Employee {
 
     public void countBMI() {
         double heightMeter = this.height / 100;
-        this.bmi = Math.round(this.weight / (heightMeter * heightMeter));
+        DecimalFormat df = new DecimalFormat("##.00");
+        this.bmi = Double.parseDouble(df.format(this.weight / (heightMeter * heightMeter)));
     }
 
     @Override

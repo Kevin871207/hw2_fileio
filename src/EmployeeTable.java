@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class EmployeeTable {
+    public int totalID = 1;
 
     public EmployeeTable() {
         employees = new ArrayList<>();
@@ -59,11 +60,15 @@ public class EmployeeTable {
                 employees.sort(CMP.WEIGHT);
                 break;
         }
+        for (Employee e : employees) {
+            System.out.println(e);
+        }
     }
 
     public int addEmployee(Employee employee) {
-        if (!(employee.weight < 0 || employee.height < 0)) {
+        if (!(employee.weight < 0 || employee.height < 0) || totalID > employee.id) {
             employees.add(employee);
+            totalID++;
         }
         return employees.size();
     }
@@ -72,6 +77,7 @@ public class EmployeeTable {
         for (Employee e : employees) {
             if (e.id == id && e.englishName.equals(engName) && e.extension.equals(ext)) {
                 employees.remove(e);
+                break;
             }
         }
         return employees.size();

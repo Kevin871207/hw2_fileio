@@ -3,7 +3,19 @@ import java.io.*;
 public class Test {
     public static void main(String[] args) {
         EmployeeTable table = new EmployeeTable();
-        int id = 1;
+        readFile(table);
+
+//        System.out.println(table.search("2115", COLUMN.EXTENSION));
+//        System.out.println(table.findMax(CMP.HEIGHT));
+//        System.out.print(table.findMin(CMP.HEIGHT));
+//        table.sortBy(COLUMN.BMI);
+//        System.out.println(table.removeEmployee(1, "Edward-Liaw", "6120"));
+
+//        table.addEmployee(new Employee(176, 80, "KevisHsu", "徐翊峰", "0", "KevinHsu@transglobe.com.tw", table.totalID));
+//        System.out.println(table.employees.get(table.totalID-2));
+    }
+
+    public static void readFile(EmployeeTable table) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("/Users/kevin/Desktop/123.txt"));
             String line;
@@ -15,16 +27,12 @@ public class Test {
                 String chineseName = st[3];
                 String extension = st[4];
                 String email = st[5];
-                int employeeID = id;
-                id++;
+                int employeeID = table.totalID;
                 table.addEmployee(new Employee(height, weight, englishName, chineseName, extension, email, employeeID));
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        System.out.print(table.findMin(CMP.HEIGHT));
-        System.out.println(table.search("2115", COLUMN.EXTENSION));
-    }
-
+    };
 }
